@@ -1,13 +1,14 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
 export const fetchSuggestion =
-  createAsyncThunk(/* Task 15: Complete the `createAsyncThunk()` function to load a suggestion from this URL: http://localhost:3004/api/suggestion */);
-
-const initialState = {
-  suggestion: '',
-  loading: false,
-  error: true,
-};
+    createAsyncThunk(
+        'suggestion/fetchSuggestion',
+        async (arg, thunkAPI) => {
+          const response = await fetch('http://localhost:3004/api/suggestion');
+          const { data } = await response.json();
+          return data;
+        }
+    );
 
 const options = {
   name: 'suggestion',
