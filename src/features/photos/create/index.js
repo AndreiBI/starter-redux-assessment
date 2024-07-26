@@ -16,6 +16,14 @@ export default function CreatePhoto() {
 
   function handleSubmit(event) {
     event.preventDefault();
+
+    // Check if imageUrl is empty
+    const { imageUrl, caption } = formData;
+    if (!imageUrl.trim()) {
+        alert('Please enter a valid image URL');
+        return;
+    }
+
     const photoData = { ...formData };
     dispatch(addPhoto(photoData));
     setFormData({ imageUrl: '', caption: '' });
